@@ -13,6 +13,7 @@ import { Input } from '@/shared/ui/input';
 import { Button } from '@/shared/ui/button';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
+import { generateImagePrompt } from '@/shared/lib/openai';
 
 interface CreateNoteDialogProps {}
 
@@ -32,7 +33,7 @@ export const CreateNoteDialog: FC<CreateNoteDialogProps> = () => {
         setInput(e.target.value);
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!input) {
             alert('Please enter name of notebook');
